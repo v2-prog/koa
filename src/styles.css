@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/*
+ * koa's colour system. Four materials, each with one job.
+ *
+ *   paper  the page, and cards a shade lighter
+ *   ink    words, lines, and anything chosen or selected
+ *   leaf   the ONE primary action on a screen, and nothing else
+ *   brass  expiry, warnings and VERIFY labels
+ *
+ * River marks the community side, so a person can tell at a glance whether
+ * they are looking at their own papers or a group's. It is never used alone:
+ * the side is always written in words as well.
+ */
+@theme {
+  --color-paper: #f3efe4;
+  --color-paper-deep: #e8e1cf;
+  --color-card: #fffcf6;
+  --color-ink: #142018;
+  --color-muted: #505b54;
+  --color-line: #d6cdb9;
+  --color-leaf: #0b5a37;
+  --color-brass: #a66a0c;
+  --color-brass-deep: #6f4504;
+  --color-brass-soft: #f8edd8;
+  --color-river: #264a66;
+  --color-river-soft: #e2eaf1;
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --radius-card: 1.25rem;
+}
+
+html {
+  /* A little larger than the browser default, for young and old eyes alike. */
+  font-size: 106.25%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+/* Date and select controls keep the text size of the inputs around them. */
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+/*
+ * A paper slip with a torn edge, used for every receipt: a spend, a gift, a
+ * passed ask and a captured docket all look like the same kind of thing.
+ */
+.slip-edge {
+  filter: drop-shadow(0 0 0.6px rgb(20 32 24 / 0.9)) drop-shadow(0 1px 0 rgb(20 32 24 / 0.12));
+}
+
+.slip {
+  --notch: 6px;
+  background: var(--color-card);
+  padding-block: calc(var(--notch) + 1rem);
+  -webkit-mask:
+    radial-gradient(var(--notch) at 50% 0, #0000 97%, #000) 50% 0 / calc(var(--notch) * 2.8) 51% repeat-x,
+    radial-gradient(var(--notch) at 50% 100%, #0000 97%, #000) 50% 100% / calc(var(--notch) * 2.8) 51% repeat-x;
+  mask:
+    radial-gradient(var(--notch) at 50% 0, #0000 97%, #000) 50% 0 / calc(var(--notch) * 2.8) 51% repeat-x,
+    radial-gradient(var(--notch) at 50% 100%, #0000 97%, #000) 50% 100% / calc(var(--notch) * 2.8) 51% repeat-x;
+}
+
+/* The strip under the header that says which side of koa a screen is on. */
+.selvedge-personal {
+  background: var(--color-ink);
+}
+
+.selvedge-community {
+  background: repeating-linear-gradient(90deg, var(--color-river) 0 14px, var(--color-paper) 14px 18px);
+}
+
+.selvedge-both {
+  background: linear-gradient(90deg, var(--color-ink) 0 50%, var(--color-river) 50% 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  header,
+  footer,
+  nav {
+    display: none !important;
+  }
+}

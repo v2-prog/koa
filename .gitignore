@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.*
+*.log
+.DS_Store
+.wrangler
+.tanstack
+screenshots
+# Copied from node_modules by scripts/copy-ocr-assets.mjs on install and build.
+public/ocr
