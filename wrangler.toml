@@ -1,0 +1,8 @@
+name = "koa"
+compatibility_date = "2026-11-11"
+pages_build_output_dir = "dist"
+
+# For `wrangler deploy` (Workers + static assets path used by the current dashboard setting)
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
